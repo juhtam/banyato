@@ -68,6 +68,29 @@ def legmelyebb_pontok_koordinatai(m, max):
         for oszlop_index, elem in enumerate(sor):
             if elem == max:
                 print(f" ({sor_index + 1}; {oszlop_index + 1})",end = "")
+    print()
 
 legmelyebb_pontok_koordinatai(melysegek, melysegek[max_s][max_o])
 
+print("5. feladat")
+def partvonal_hossza(m):
+    hossz = 0
+    for i in range(1, len(m)-1):
+        for j in range(1, len(m[i])-1):
+            if m[i] [j] > 0:
+                if m[i-1] [j] == 0:
+                    hossz += 1 
+                if m[i+1] [j] == 0:
+                    hossz += 1
+                if m[i] [j-1] == 0:
+                    hossz += 1
+                if m[i] [j+1] == 0:
+                    hossz += 1
+    return hossz
+print(f"A tó partvonala {partvonal_hossza(melysegek)} m hosszú")
+
+print("6. feladat")
+be_oszlop = int(input("A vizsgált szelvény oszlopának azonosítója = ") or "6")-1
+with open("diagram.txt", "w", encoding="utf-8") as fout:
+    for sor_index, sor in enumerate(melysegek):
+        print(f"{sor_index+1:2d}","*"*sor[be_oszlop], file = fout)
